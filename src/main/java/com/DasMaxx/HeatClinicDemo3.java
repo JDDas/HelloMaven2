@@ -5,8 +5,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
 public class HeatClinicDemo3 {
+    private static ExpectedConditions ExceptedConditions;
+
     public static void main(String[] args) throws InterruptedException {
         WebDriverManager.chromedriver().setup();
 
@@ -42,6 +46,16 @@ public class HeatClinicDemo3 {
         greenGhostAddCart.click();
         Thread.sleep(100);
         driver.switchTo().alert().accept();
+
+       // WebDriverWait wait = new WebDriverWait(driver);
+      //  WebElement loginButton = wait.until(ExceptedConditions.visibilityOfElementLocated(
+             //   By.xpath("//a[@class='btn btn-primary goto-full-cart']")));
+       // loginButton.click();
+
+
+       // JavascriptExecutor js = (JavascriptExecutor) driver;
+      //  WebElement loginButton = driver.findElement(By.xpath("//a[@class='btn btn-primary goto-full-cart']"));
+      //  js.executeScript("argument[0].click();", btn btn-primary goto-full-cart);
 
         driver.findElement(By.xpath("(//div/button/span)[5]")).click();
         Thread.sleep(100);
@@ -90,8 +104,21 @@ public class HeatClinicDemo3 {
         pmtCheckBoxElement.click();
         Thread.sleep(100);
 
-        WebElement pmtStateElement = driver.findElement(By.xpath("//select[@id='stateProvinceRegion']"));
-        pmtStateElement.sendKeys("MN");
+        //WebElement pmtStateElement = driver.findElement(By.xpath("//select[@id='stateProvinceRegion']"));
+        //pmtStateElement.sendKeys("MN");
+       // Thread.sleep(100);
+
+        WebElement stateElementDropDown = driver.findElement(By.id("//select[@id='stateProvinceRegion']"));
+        Select state = new Select(stateElementDropDown);
+        state.selectByVisibleText("MN");
+        stateElementDropDown.click();
+        Thread.sleep(100);
+
+        WebElement pmtCreditCardElement = driver.findElement(By.xpath("//a[@href='#CreditCard']"));
+        pmtCreditCardElement.click();
+        Thread.sleep(100);
+
+        driver.findElement(By.linkText("Place Your Order</span"));
         Thread.sleep(100);
 
        /* WebElement orderConfermationElement = driver.findElement(By.xpath("//h3[@span'202108241520213033337']"));
