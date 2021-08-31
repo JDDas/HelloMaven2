@@ -1,6 +1,7 @@
 package com.DasMaxx;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,42 +11,43 @@ import org.openqa.selenium.support.ui.Select;
 
 public class HeatClinicDemo3 {
     private static ExpectedConditions ExceptedConditions;
-
+@Test
     public static void main(String[] args) throws InterruptedException {
         WebDriverManager.chromedriver().setup();
 
         WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        Thread.sleep(100);
-        driver.manage().window().minimize();
-        Thread.sleep(100);
-        driver.manage().window().maximize();
+      //  driver.manage().window().maximize();
+       // Thread.sleep(3000);
+       // driver.manage().window().minimize();
+       // Thread.sleep(3000);
+       // driver.manage().window().maximize();
 
         driver.get ("https://demo.broadleafcommerce.org/");
 
         WebElement myElement = driver.findElement(By.xpath("//a[@href='/login']"));
         myElement.click();
-        Thread.sleep(100);
+        Thread.sleep(3000);
 
         WebElement emailElement = driver.findElement(By.xpath("//input[@type='email']"));
         emailElement.sendKeys("jmc7772@gmail.com");
         emailElement.click();
-        Thread.sleep(100);
+        Thread.sleep(3000);
 
         WebElement pwElement = driver.findElement(By.xpath("(//input[@type='password'])[1]"));
         pwElement.sendKeys("Heat12345");
-        Thread.sleep(100);
+        Thread.sleep(3000);
 
         WebElement myElement_rememberMe = driver.findElement(By.xpath("(//span[@class='checkbox-material'])"));
         myElement_rememberMe.click();
 
         WebElement myElement_login = driver.findElement(By.xpath("(//button[@class='btn btn-primary pull-right'])[1]"));
         myElement_login.click();
-        Thread.sleep(100);
+        Thread.sleep(3000);
         WebElement greenGhostAddCart = driver.findElement(By.xpath("//a[@href='/hot-sauces/green_ghost']/div"));
         greenGhostAddCart.click();
-        Thread.sleep(100);
+        Thread.sleep(3000);
         driver.switchTo().alert().accept();
+
 
        // WebDriverWait wait = new WebDriverWait(driver);
       //  WebElement loginButton = wait.until(ExceptedConditions.visibilityOfElementLocated(
@@ -58,51 +60,51 @@ public class HeatClinicDemo3 {
       //  js.executeScript("argument[0].click();", btn btn-primary goto-full-cart);
 
         driver.findElement(By.xpath("(//div/button/span)[5]")).click();
-        Thread.sleep(100);
+        Thread.sleep(3000);
         System.out.println("print here3");
         driver.findElement(By.xpath("//a[@class='btn btn-primary goto-full-cart']")).click();
-        Thread.sleep(100);
+        Thread.sleep(3000);
         driver.findElement(By.xpath("//a[@href='/checkout']")).click();
-        Thread.sleep(100);
+        Thread.sleep(3000);
 
       String shipingText = driver.findElement(By.xpath("//*[@id='shippingInfo']/div/div[1]/h4/span")).getText();
        System.out.println("Shipping Text: " + shipingText);
 
         driver.findElement(By.xpath("(//li[@class='dropdown'])[3]")).click();
-        Thread.sleep(100);
+        Thread.sleep(3000);
 
         WebElement checkoutCart = driver.findElement(By.xpath("//a[@href='/checkout']"));
         checkoutCart.click();
-        Thread.sleep(100);
+        Thread.sleep(3000);
 
         WebElement checkoutCartTwo = driver.findElement(By.xpath("//a[@href='/checkout']"));
         checkoutCartTwo.click();
-        Thread.sleep(100);
+        Thread.sleep(3000);
 
 
         WebElement pmtFullNameElement = driver.findElement(By.xpath("(//input[@id='fullName'])[1]"));
         pmtFullNameElement.sendKeys("JD Das");
-        Thread.sleep(100);
+        Thread.sleep(3000);
 
         WebElement pmtAdressLineElement = driver.findElement(By.xpath("(//input[@id='addressLine1'])[1]"));
         pmtAdressLineElement.sendKeys("420 BS Street");
-        Thread.sleep(100);
+        Thread.sleep(3000);
 
         WebElement pmyCityElement = driver.findElement(By.xpath("(//input[@id='city'])[1]"));
         pmyCityElement.sendKeys("CrazyCity");
-        Thread.sleep(100);
+        Thread.sleep(3000);
 
         WebElement pmtPostalCodeElement = driver.findElement(By.xpath(" (//input[@id='postalCode'])[1]"));
         pmtPostalCodeElement.sendKeys("55125");
-        Thread.sleep(100);
+        Thread.sleep(3000);
 
         WebElement pmtPhoneNumberElement = driver.findElement(By.xpath("(//input[@id='phonePrimary'])[1]"));
         pmtPhoneNumberElement.sendKeys("6512223333");
-        Thread.sleep(100);
+        Thread.sleep(3000);
 
         WebElement pmtCheckBoxElement = driver.findElement(By.xpath("//span[@class='checkbox-material']"));
         pmtCheckBoxElement.click();
-        Thread.sleep(100);
+        Thread.sleep(3000);
 
         //WebElement pmtStateElement = driver.findElement(By.xpath("//select[@id='stateProvinceRegion']"));
         //pmtStateElement.sendKeys("MN");
@@ -112,14 +114,19 @@ public class HeatClinicDemo3 {
         Select state = new Select(stateElementDropDown);
         state.selectByVisibleText("MN");
         stateElementDropDown.click();
-        Thread.sleep(100);
+        Thread.sleep(3000);
 
         WebElement pmtCreditCardElement = driver.findElement(By.xpath("//a[@href='#CreditCard']"));
         pmtCreditCardElement.click();
-        Thread.sleep(100);
+        Thread.sleep(3000);
 
         driver.findElement(By.linkText("Place Your Order</span"));
-        Thread.sleep(100);
+        Thread.sleep(3000);
+
+        WebElement CVVLink = driver.findElement(By.xpath("//input[@id='securityCode']"));
+        String ConfirmationText = driver.findElement(By.xpath("//span[normalize-space()='Order Confirmation #']")).getText();
+        System.out.println("Order Confirmation # " + ConfirmationText);
+        Thread.sleep(3000);
 
        /* WebElement orderConfermationElement = driver.findElement(By.xpath("//h3[@span'202108241520213033337']"));
         orderConfermationElement.sendKeys("MN");
